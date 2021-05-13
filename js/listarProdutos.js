@@ -1,7 +1,8 @@
 const divRaiz = document.querySelector('div#root');
 
 const containerPai = document.createElement('div');
-const divProduto = document.createElement('card');
+containerPai.setAttribute('id', "containerpai");
+
 // const qtd = document.createElement('input')
 
 
@@ -16,6 +17,7 @@ fetch('https://raw.githubusercontent.com/buscape-company/exercicios/master/front
       const produto = produtoRaiz.product;
       const idProduto = produtoRaiz.id;
 
+      const divProduto = document.createElement('div');
       const nomeProduto = document.createElement('h2');
       const imagemProduto = document.createElement('img');
       const divPreco = document.createElement('div');
@@ -24,9 +26,11 @@ fetch('https://raw.githubusercontent.com/buscape-company/exercicios/master/front
       const valorPorParcela = document.createElement('p');
       const btnCart = document.createElement('button')
 
-      btnCart.setAttribute('id', "btnChart");
+      btnCart.setAttribute('id', "btnCart");
 
-      divProduto.setAttribute('id', produto.id);
+      divProduto.setAttribute('id', "card");
+
+      divPreco.setAttribute('id', "preco");
 
       nomeProduto.innerText = produto.name;
 

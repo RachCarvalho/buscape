@@ -1,0 +1,61 @@
+#navbar{
+    width: 100%;
+    height: 10vh;
+    background-color: #ffd000;
+    margin: 0;
+}
+#containerpai{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+#card{
+    text-align: center;
+    box-sizing: border-box;
+    border-style: outset;
+    padding: 1%;
+    width: auto;
+    height: 500px;
+    margin: 2%;
+    vertical-align: middle;
+}
+h2{
+    font-family: calibri light;
+    font-size: 18pt;
+}
+
+h1{
+    text-align: center;
+}
+
+#preco{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+}
+
+img{
+    width: auto;
+    height: 8rem;
+}
+
+#btnCart {
+    width: 50%;
+    background-color: #ffd000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14pt;
+    color: rgb(0, 0, 0);
+    padding: 2%;
+    margin: auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+.sidebar, #cart{
+display:none;
+}

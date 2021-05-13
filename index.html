@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Buscapé</title>
+    <link rel="stylesheet" href="./css/style.css" </head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <span>0</span>
+            <span class="material-icons">shopping_cart</span>
+        </nav>
+    </header>
+
+    <div id="cart">
+        <div id="cart-item">
+            <div id="imgProdt"></div>
+            <h3 id="item"></h3>
+            <h4 id="price"></h4>
+            <div id="cart-qty">
+                <button id="cart-qty-less">-</button>
+                <div id="qty-input" type=float>0</div>
+                <button id="cart-qty-more">+</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div id="content">
+            <h1>Lista de Produtos do Buscapé</h1>
+            <div id="root"></div>
+        </div>
+    </main>
+    <aside>
+        <div id="cart-area">
+            <div id="menu-closer">
+                <span class="material-icons">close</span>
+            </div>
+            <h1>Seus produtos</h1>
+            <div class="cart"> </div>
+            <div class="cart-details">
+                <div class="cart-totalitem subtotal">
+                    <span>Subtotal</span>
+                    <span>R$ --</span>
+                </div>
+                <div class="cart-totalitem desconto">
+                    <span>Desconto (-10%)</span>
+                    <span>R$ --</span>
+                </div>
+                <div class="cart-finalizar">Finalizar a compra</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+</body>
+<script src="./js/listarProdutos.js"></script>
+
+</html>

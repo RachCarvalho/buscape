@@ -1,7 +1,9 @@
-const divRaiz = document.querySelector('div#root');
+const divRoot = document.querySelector('div#root');
 
-const containerPai = document.createElement('div');
-containerPai.setAttribute('id', "containerpai");
+const mainContainer = document.createElement('div');
+mainContainer.setAttribute('id', "mainContainer");
+const cart = document.getElementById('cart');
+
 
 // const qtd = document.createElement('input')
 
@@ -9,69 +11,142 @@ containerPai.setAttribute('id', "containerpai");
 fetch('https://raw.githubusercontent.com/buscape-company/exercicios/master/frontend/resources/data.json')
   .then(res => res.json())
   .then(res => {
-    const arrayProdutos = res;
-    const arrayConvertido = arrayProdutos.items;
-    console.log(arrayConvertido);
+    const arrayProducts = res;
+    const arrayModified = arrayProducts.items;
+    console.log(arrayModified);
 
-    arrayConvertido.forEach(produtoRaiz => {
-      const produto = produtoRaiz.product;
-      const idProduto = produtoRaiz.id;
+    arrayModified.forEach(productReduced => {
+      const allProducts = productReduced.product;
 
-      const divProduto = document.createElement('div');
-      const nomeProduto = document.createElement('h2');
-      const imagemProduto = document.createElement('img');
-      const divPreco = document.createElement('div');
-      const preco = document.createElement('h4');
-      const parcelas = document.createElement('p');
-      const valorPorParcela = document.createElement('p');
-      const btnCart = document.createElement('button')
+      const divProduct = document.createElement('div');
+      const productName = document.createElement('h2');
+      const productImage = document.createElement('img');
+      const divPrice = document.createElement('div');
+      const price = document.createElement('h4');
+      const installments = document.createElement('p');
+      const installmentValue = document.createElement('p');
+      const buyBtn = document.createElement('button')
 
-      btnCart.setAttribute('id', "btnCart");
+      buyBtn.setAttribute('class', "buyBtn");
+      buyBtn.setAttribute('id', allProducts.id);
 
-      divProduto.setAttribute('id', "card");
+      divProduct.setAttribute('id', "card");
 
-      divPreco.setAttribute('id', "preco");
+      divPrice.setAttribute('id', "price");
 
-      nomeProduto.innerText = produto.name;
+      productName.innerText = allProducts.name;
 
-      imagemProduto.setAttribute('src', produto.images[0]);
-      imagemProduto.setAttribute('alt', produto.name);
-      imagemProduto.addEventListener('error', (event) => {
+      productImage.setAttribute('src', allProducts.images[0]);
+      productImage.setAttribute('alt', allProducts.name);
+      productImage.addEventListener('error', (event) => {
         event.target.setAttribute('src', 'https://source.unsplash.com/random');
       });
 
-      const precoFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price.value);
-      const parcelaFormatada = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price.installmentValue);
-      preco.innerText = `Valor: ${precoFormatado}`;
-      parcelas.innerText = `Parecele em ${produto.price.installments}x no cartão de crédito`;
-      valorPorParcela.innerText = `Valor da parcela: ${parcelaFormatada}`;
-      btnCart.innerText = 'Comprar';
+      const priceConfig = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(allProducts.price.value);
+      const installmentsChanged = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(allProducts.price.installmentValue);
+      price.innerText = `Valor: ${priceConfig}`;
+      installments.innerText = `Parecele em ${allProducts.price.installments}x no cartão de crédito`;
+      installmentValue.innerText = `Valor da parcela: ${installmentsChanged}`;
+      buyBtn.innerText = 'Comprar';
 
-      btnCart.addEventListener('click', (event) => {
-        localStorage.setItem('produto', produto.name);
-        localStorage.setItem('preco', precoFormatado);
-        localStorage.setItem('imagem', imagemProduto);
+      // const prodtCart = document.getElementById("input")
+      // const btnSavePeople = document.querySelector("button")
+      // const result = document.querySelector("#result ol")
+      buyBtn.addEventListener('click', () => {
+        let prodtCart = new Array()
+        
+        if (localStorage.hasOwnProperty("prodtCart")) {
+          prodtCart = JSON.parse(localStorage.getItem("prodtCart"))
+        }
+
+        prodtCart.push({ name: allProducts.name, price: priceConfig, qty: 1 })
+
+        localStorage.setItem("prodtCart", JSON.stringify(prodtCart))
+
+        Object.keys(localStorage).forEach(function (value) {
+          console.log(localStorage.getItem(value));
+          const cartPrdctArray = (localStorage.getItem(value));
+          console.log(cartPrdctArray);
+
+            const cartArray1 = cartPrdctArray.replaceAll('[{"', '');
+            console.log(cartArray1);
+            console.log(typeof cartArray1);
+            const cartArray2 = cartArray1.replaceAll('":', ': ');
+            console.log(cartArray2);
+            console.log(typeof cartArray2);
+            const cartArray3 = cartArray2.replaceAll(',"', ', ');
+            console.log(cartArray3);
+            console.log(typeof cartArray3);
+            const cartArray4 = cartArray3.replaceAll('}]', '');
+            console.log(cartArray4);
+            console.log(typeof cartArray4);
+
+
+            const cartArray = cartArray4.split(/\s*,\s*/);
+            console.log(cartArray);
+            console.log(typeof cartArray);
+
+          
+
+          // const cartArray1 = cartPrdctArray.flatMap(cartPrdctArray(  
+          //   cartPrdctArray.split("{}")));
+          // console.log(cartArray1);
+          // var ra = /\s*;\s*/;
+          // const cartArray = cartArray1.split(re);
+          // console.log(cartArray);
+          // const cartArray = new Map ();
+          // cartArray.push({cartPrdctArray});
+          // console.log(cartArray);
+          // Array.from(cartPrdctArray);
+          // cartArray.push(cartPrdctArray)
+          // const finalcart = 
+
+
+          const cartItem = document.createElement('div');
+          const productCart = document.createElement('div');
+          const priceCart = document.createElement('div');
+          const productCartName = document.createElement('span');
+          const priceCartValue = document.createElement('span');
+          const cartdivider = document.createElement('hr');
+
+          cartItem.setAttribute = ('class', "cartItem")
+          productCartName.setAttribute = ('class', "spanCartText")
+          priceCartValue.setAttribute = ('class', "spanCartText")
+
+          productCartName.innerHTML = `${(localStorage.getItem(value))}`;
+          priceCartValue.innerHTML = `${(localStorage.getItem(value))}`;
+
+          productCart.innerHTML = `${'Produto: ' + productCartName}`;
+          priceCart.innerHTML = `${'Preço: ' + priceCartValue + cartdivider}`;
+
+          cart.appendChild(cartItem);
+          cartItem.appendChild(productCart);
+          cartItem.appendChild(priceCart);
+        });
+
+        document.getElementById("cartbar").style.display = "block";
+
         alert("Produto adicionado ao carrinho!");
       });
 
+      console.log(allProducts, buyBtn);
 
-      divPreco.appendChild(preco);
-      divPreco.appendChild(parcelas);
-      divPreco.appendChild(valorPorParcela);
+      divPrice.appendChild(price);
+      divPrice.appendChild(installments);
+      divPrice.appendChild(installmentValue);
 
-      divProduto.appendChild(nomeProduto);
-      divProduto.appendChild(imagemProduto);
-      divProduto.appendChild(divPreco);
-      divProduto.appendChild(btnCart);
+      divProduct.appendChild(productName);
+      divProduct.appendChild(productImage);
+      divProduct.appendChild(divPrice);
+      divProduct.appendChild(buyBtn);
 
-      containerPai.appendChild(divProduto);
+      mainContainer.appendChild(divProduct);
 
-      document.getElementById("item").innerHTML += localStorage.getItem('produto');
-      document.getElementById("price").innerHTML += localStorage.getItem('preco');
-      document.getElementById("imgProdt").innerHTML += localStorage.getItem('imagem');
+
+
     });
 
-    divRaiz.appendChild(containerPai);
+    divRoot.appendChild(mainContainer);
 
 
   });
